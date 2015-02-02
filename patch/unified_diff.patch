@@ -1,0 +1,45 @@
+commit 8857eed605b9bc7f0d6329f5de6b8ae27965f999
+Author: CODeRUS <coderusinbox@gmail.com>
+Date:   Mon Feb 2 10:37:33 2015 +0500
+
+    Disable glass avatar
+
+diff --git a/usr/share/voicecall-ui-jolla/pages/calling/CallingView.qml b/usr/share/voicecall-ui-jolla/pages/calling/CallingView.qml
+index 60be19f..994d4f6 100644
+--- a/usr/share/voicecall-ui-jolla/pages/calling/CallingView.qml
++++ b/usr/share/voicecall-ui-jolla/pages/calling/CallingView.qml
+@@ -82,7 +82,7 @@ Page {
+         id: avatarUpdateTimer
+         interval: 1
+         onTriggered: {
+-            var newAvatar = "image://glass/" + callerAvatar
++            var newAvatar = callerAvatar
+             if (glassAvatar.source != newAvatar) {
+                 avatarChangeAnimation.start()
+             } else if (callerAvatar != "") {
+@@ -100,7 +100,7 @@ Page {
+         }
+         ScriptAction {
+             script: {
+-                var newAvatar = "image://glass/" + callerAvatar
++                var newAvatar = callerAvatar
+                 if (telephony.active && glassAvatar.visible) {
+                     if (callerAvatar != "") {
+                         // avatar will be faded in once the status == Image.Ready
+@@ -119,9 +119,14 @@ Page {
+         z: -1
+         asynchronous: true
+         opacity: 0.0
+-        sourceSize { width: parent.width; height: parent.height }
++        anchors.fill: parent
++        fillMode: Image.PreserveAspectCrop
++        horizontalAlignment: Image.AlignHCenter
++        verticalAlignment: Image.AlignVCenter
++        clip: true
++        smooth: true
+         onVisibleChanged: {
+-            var newAvatar = "image://glass/" + callerAvatar
++            var newAvatar = callerAvatar
+             if (visible && newAvatar != source) {
+                 opacity = 0.0
+                 avatarUpdateTimer.restart()

@@ -1,0 +1,8 @@
+{
+    "name": "Disable glass avatar",
+    "description": "Patch for showing original avatar when calling without glass effect",
+    "category": "phone",
+    "infos": {
+        "maintainer": "coderus"
+    }
+}
