@@ -1,11 +1,5 @@
-commit 8857eed605b9bc7f0d6329f5de6b8ae27965f999
-Author: CODeRUS <coderusinbox@gmail.com>
-Date:   Mon Feb 2 10:37:33 2015 +0500
-
-    Disable glass avatar
-
-diff --git a/usr/share/voicecall-ui-jolla/pages/calling/CallingView.qml b/usr/share/voicecall-ui-jolla/pages/calling/CallingView.qml
-index 60be19f..994d4f6 100644
+diff --git a/CallingView.qml b/CallingView.qml
+index e34944b..a86e904 100644
 --- a/usr/share/voicecall-ui-jolla/pages/calling/CallingView.qml
 +++ b/usr/share/voicecall-ui-jolla/pages/calling/CallingView.qml
 @@ -82,7 +82,7 @@ Page {
@@ -40,6 +34,6 @@ index 60be19f..994d4f6 100644
          onVisibleChanged: {
 -            var newAvatar = "image://glass/" + callerAvatar
 +            var newAvatar = callerAvatar
-             if (visible && newAvatar != source) {
+             if (visible) {
                  opacity = 0.0
-                 avatarUpdateTimer.restart()
+                 if (newAvatar != source) {
